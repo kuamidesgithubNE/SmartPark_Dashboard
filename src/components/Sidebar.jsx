@@ -3,7 +3,9 @@ import { Link, Outlet } from "react-router-dom";
 
 const Sidebar = () => (
   <div className="sidebar">
-    <h3> SMARTPARK DASHBORD</h3>
+    <div className="logo">
+      <h3> SMARTPARK DASHBORD</h3>
+    </div>
     <ul>
       <Link to="/">
         <a>

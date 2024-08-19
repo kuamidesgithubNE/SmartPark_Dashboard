@@ -4,7 +4,7 @@ import Topbar from "../components/Header";
 import axios from "axios";
 
 const UserPage = () => {
-  const apiUrl = "http://localhost/SmartPark-Backend/crudUser/display.php";
+  const apiUrl = "http://localhost/SmartPark-Backend/Users/display.php";
 
   const [users, setUsers] = useState([]);
 
@@ -36,48 +36,46 @@ const UserPage = () => {
       <Sidebar />
       <div className="dashboard-main">
         <Topbar />
-        <div className="user-container">
-          <div className="table-container">
-            <table>
-              <caption>User Management</caption>
-              <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+        <div className="dashboard-content">
+          <table>
+            <caption>User Management</caption>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
 
-                  <th>Date Created</th>
-                  <th>Actions</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.user_id}>
+                  <td>{user.user_id}</td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.date_created}</td>
+                  <td>
+                    <button
+                      className="edit-btn"
+                      onClick={() => handleEditUser(user.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteUser(user.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.user_id}>
-                    <td>{user.user_id}</td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone}</td>
-                    <td>{user.date_created}</td>
-                    <td>
-                      <button
-                        className="edit-btn"
-                        onClick={() => handleEditUser(user.id)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDeleteUser(user.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
